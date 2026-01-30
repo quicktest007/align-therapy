@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Align Therapy</title>
+  <meta name="description" content="Specialized therapy to help you overcome pornography addiction. Evidence-based, private, and non-judgmental." />
+</head>
+<body>
+  <div id="at-site">
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap");
+
+      #at-site{--at-navy:#0B1F3B;--at-teal:#1AA6A6;--at-bg:#F6F8FB;--at-text:#1F2937;--at-border:#E5E7EB;--at-font-heading:'Manrope',sans-serif;--at-font-body:'Inter',sans-serif;font-family:var(--at-font-body);font-size:16px;color:var(--at-text);background:var(--at-bg);line-height:1.5;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;}
+      #at-site *,#at-site *::before,#at-site *::after{box-sizing:border-box;}
+      #at-site a:focus-visible,#at-site button:focus-visible,#at-site select:focus-visible{outline:2px solid var(--at-teal);outline-offset:2px;}
+      #at-site .at-container{width:100%;max-width:1120px;margin:0 auto;padding-left:1rem;padding-right:1rem;}
+      @media(min-width:768px){#at-site .at-container{padding-left:2rem;padding-right:2rem;}}
+
+      /* Header */
+      #at-site .at-header{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 1px 3px rgba(11,31,59,.08);}
+      #at-site .at-header .at-container{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1rem;}
+      @media(min-width:768px){#at-site .at-header .at-container{padding-left:2rem;padding-right:2rem;}}
+      #at-site .at-header__brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--at-navy);}
+      #at-site .at-header__icon{width:32px;height:32px;background:rgba(26,166,166,.2);border-radius:10px;}
+      #at-site .at-header__wordmark{font-family:var(--at-font-heading);font-weight:700;font-size:1.25rem;letter-spacing:-.02em;}
+      #at-site .at-header__brand:hover{color:var(--at-teal);}
+      #at-site .at-header .at-nav{display:flex;align-items:center;gap:1.5rem;}
+      #at-site .at-header .at-nav a{color:var(--at-text);font-weight:500;text-decoration:none;}
+      #at-site .at-header .at-nav a:hover{color:var(--at-teal);}
+      #at-site .at-btn-login{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--at-navy);color:#fff;border:none;border-radius:999px;font-family:var(--at-font-body);font-size:.875rem;font-weight:600;text-decoration:none;cursor:pointer;}
+      #at-site .at-btn-login:hover{opacity:.92;}
+      #at-site .at-btn-login svg{width:18px;height:18px;}
+      #at-site .at-header__hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0;border:none;background:transparent;cursor:pointer;border-radius:10px;}
+      #at-site .at-header__hamburger span{display:block;width:22px;height:2px;background:var(--at-navy);border-radius:1px;transition:transform .2s,opacity .2s;}
+      #at-site .at-header__hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+      #at-site .at-header__hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+      #at-site .at-header__hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+      #at-site .at-header__dropdown{display:none;background:#fff;border-top:1px solid var(--at-border);box-shadow:0 10px 30px rgba(11,31,59,.12);}
+      #at-site .at-header__dropdown[aria-hidden="false"]{display:block;}
+      #at-site .at-header__dropdown .at-nav{flex-direction:column;padding:1rem;align-items:stretch;}
+      #at-site .at-header__dropdown .at-nav a{padding:.5rem 0;}
+      @media(max-width:767px){#at-site .at-header .at-container .at-nav{display:none;}#at-site .at-header .at-container .at-btn-login{display:none;}#at-site .at-header__hamburger{display:flex;}}
+
+      /* Hero (gradient + dynamic background) */
+      #at-site .at-hero{
+        position:relative;
+        min-height:520px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:4.25rem 0 4.75rem;
+        overflow:hidden;
+        background:
+          radial-gradient(1100px circle at 20% 10%, rgba(26,166,166,.25), transparent 55%),
+          radial-gradient(900px circle at 85% 30%, rgba(11,31,59,.70), transparent 60%),
+          linear-gradient(120deg, rgba(11,31,59,1) 0%, rgba(11,31,59,.92) 48%, rgba(26,166,166,.18) 100%);
+      }
+      #at-site .at-hero::before{
+        content:'';
+        position:absolute;
+        inset:0;
+        background:
+          radial-gradient(900px circle at 50% -10%, rgba(255,255,255,.18), transparent 60%),
+          linear-gradient(180deg, rgba(11,31,59,.25) 0%, rgba(11,31,59,.12) 45%, rgba(11,31,59,.20) 100%);
+        pointer-events:none;
+        z-index:1;
+      }
+      #at-site .at-hero::after{
+        content:'';
+        position:absolute;
+        inset:-30%;
+        background:
+          radial-gradient(closest-side at 20% 30%, rgba(26,166,166,.35), transparent 60%),
+          radial-gradient(closest-side at 80% 25%, rgba(11,31,59,.35), transparent 55%),
+          radial-gradient(closest-side at 55% 85%, rgba(26,166,166,.22), transparent 62%);
+        filter:blur(42px);
+        opacity:.55;
+        transform:translate3d(0,0,0);
+        animation:at-aurora 18s ease-in-out infinite;
+        pointer-events:none;
+        z-index:0;
+      }
+      @keyframes at-aurora{
+        0%,100%{transform:translate3d(-2%,-1%,0) scale(1.02);}
+        50%{transform:translate3d(2%,2%,0) scale(1.06);}
+      }
+      #at-site .at-hero .at-container{position:relative;z-index:2;width:100%;}
+      #at-site .at-hero__headline{
+        font-family:var(--at-font-heading);
+        font-weight:500;
+        font-size:clamp(2.2rem,5vw,3.2rem);
+        color:#fff;
+        text-align:center;
+        margin:0 0 2rem;
+        letter-spacing:-.02em;
+        line-height:1.15;
+      }
+
+      #at-site .at-hero__search{
+        background:rgba(255,255,255,.92);
+        border-radius:22px;
+        box-shadow:0 14px 44px rgba(11,31,59,.22);
+        padding:0;
+        max-width:940px;
+        margin:0 auto;
+        overflow:hidden;
+        backdrop-filter:saturate(140%) blur(10px);
+      }
+      #at-site .at-hero__search-inner{display:flex;flex-wrap:wrap;align-items:stretch;}
+      #at-site .at-hero__search-inner .at-field{flex:1;min-width:160px;border-right:1px solid rgba(229,231,235,.9);padding:.85rem 1rem;}
+      #at-site .at-hero__search-inner .at-field:last-of-type{border-right:none;}
+      #at-site .at-hero__search-inner .at-field label{display:block;font-size:.7rem;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem;}
+      #at-site .at-hero__search-inner .at-field select{width:100%;border:none;background:transparent;font-size:1rem;color:var(--at-text);font-family:var(--at-font-body);cursor:pointer;appearance:none;}
+      #at-site .at-hero__search-btn{
+        display:flex;align-items:center;justify-content:center;gap:.5rem;
+        padding:1.05rem 1.6rem;
+        background:var(--at-teal);
+        color:#fff;border:none;border-radius:0;
+        font-family:var(--at-font-body);
+        font-size:1rem;font-weight:700;
+        cursor:pointer;white-space:nowrap;
+      }
+      #at-site .at-hero__search-btn:hover{opacity:.92;}
+      #at-site .at-hero__search-btn svg{width:18px;height:18px;}
+      @media(max-width:640px){
+        #at-site .at-hero{min-height:560px;padding:4.25rem 0 4.25rem;}
+        #at-site .at-hero__search-inner{flex-direction:column;}
+        #at-site .at-hero__search-inner .at-field{border-right:none;border-bottom:1px solid rgba(229,231,235,.9);}
+        #at-site .at-hero__search-btn{width:100%;}
+      }
+      #at-site .at-hero__disclaimer{text-align:center;font-size:.8rem;color:rgba(255,255,255,.88);margin-top:1rem;}
+
+      /* Blobs */
+      #at-site .at-hero__blobs{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+      #at-site .at-hero__blob{position:absolute;border-radius:999px;filter:blur(70px);opacity:.14;mix-blend-mode:screen;}
+      #at-site .at-hero__blob--1{width:520px;height:520px;background:radial-gradient(circle,rgba(26,166,166,.9) 0%,transparent 65%);top:-8%;left:-8%;animation:at-float1 26s ease-in-out infinite;}
+      #at-site .at-hero__blob--2{width:420px;height:420px;background:radial-gradient(circle,rgba(11,31,59,.95) 0%,transparent 70%);top:55%;right:-10%;opacity:.12;animation:at-float2 34s ease-in-out infinite;}
+      #at-site .at-hero__blob--3{width:460px;height:460px;background:radial-gradient(circle,rgba(26,166,166,.85) 0%,transparent 68%);bottom:-18%;left:18%;opacity:.11;animation:at-float3 30s ease-in-out infinite;}
+      #at-site .at-hero__blob--4{width:360px;height:360px;background:radial-gradient(circle,rgba(11,31,59,.9) 0%,transparent 70%);top:18%;right:18%;opacity:.10;animation:at-float4 24s ease-in-out infinite;}
+      @keyframes at-float1{0%,100%{transform:translate(0,0) scale(1) rotate(0deg);}50%{transform:translate(44px,-34px) scale(1.08) rotate(9deg);}}
+      @keyframes at-float2{0%,100%{transform:translate(0,0) scale(1) rotate(0deg);}50%{transform:translate(-50px,28px) scale(1.10) rotate(-10deg);}}
+      @keyframes at-float3{0%,100%{transform:translate(0,0) scale(1) rotate(0deg);}50%{transform:translate(34px,46px) scale(1.06) rotate(7deg);}}
+      @keyframes at-float4{0%,100%{transform:translate(0,0) scale(1) rotate(0deg);}50%{transform:translate(-34px,-38px) scale(1.09) rotate(-8deg);}}
+
+      @media(prefers-reduced-motion:reduce){
+        #at-site .at-hero__blob{animation:none!important;}
+        #at-site .at-hero::after{animation:none!important;}
+      }
+
+      /* About */
+      #at-site .at-about{background:#fff;padding:4rem 0;}
+      #at-site .at-about__heading{font-family:var(--at-font-heading);font-weight:600;font-size:clamp(1.75rem,3vw,2.25rem);color:var(--at-navy);text-align:center;margin:0 0 1rem;}
+      #at-site .at-about__lead{text-align:center;max-width:720px;margin:0 auto 2.5rem;font-size:1.0625rem;color:var(--at-text);line-height:1.65;}
+      #at-site .at-about__cards{display:grid;gap:1.5rem;margin-top:2rem;}
+      @media(min-width:768px){#at-site .at-about__cards{grid-template-columns:repeat(3,1fr);}}
+      #at-site .at-about__card{background:#fff;border-radius:22px;box-shadow:0 10px 35px rgba(11,31,59,.10);overflow:hidden;}
+      #at-site .at-about__card img{width:100%;height:240px;object-fit:cover;object-position:center;display:block;}
+      #at-site .at-about__card figcaption{padding:1.25rem;font-size:.9rem;color:var(--at-text);}
+
+      /* FAQ */
+      #at-site .at-faq{background:var(--at-bg);padding:4rem 0;}
+      #at-site .at-faq__heading{font-family:var(--at-font-heading);font-weight:600;font-size:clamp(1.5rem,2.5vw,2rem);color:var(--at-navy);margin:0 0 1.5rem;}
+      #at-site .at-faq__item{border-bottom:1px solid var(--at-border);}
+      #at-site .at-faq__trigger{width:100%;padding:1rem 0;text-align:left;font-family:var(--at-font-heading);font-size:1rem;font-weight:600;color:var(--at-navy);background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;}
+      #at-site .at-faq__trigger:hover{color:var(--at-teal);}
+      #at-site .at-faq__panel{padding:0 0 1rem;}
+      #at-site .at-faq__panel p{margin:0;font-size:.9375rem;color:var(--at-text);line-height:1.6;}
+
+      /* Footer */
+      #at-site .at-footer{background:#fff;border-top:1px solid var(--at-border);padding:2rem 0;}
+      #at-site .at-footer__top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem;}
+      #at-site .at-footer__logo{font-family:var(--at-font-heading);font-weight:700;color:var(--at-navy);text-decoration:none;}
+      #at-site .at-footer__nav{display:flex;gap:1.5rem;}
+      #at-site .at-footer__nav a{color:var(--at-text);text-decoration:none;font-size:.875rem;}
+      #at-site .at-footer__nav a:hover{color:var(--at-teal);}
+      #at-site .at-footer__compliance,#at-site .at-footer__state-line,#at-site .at-footer__copy{font-size:.8125rem;color:#6B7280;margin:.5rem 0 0;}
+    </style>
+
+    <header class="at-header" role="banner" id="at-header">
+      <div class="at-container">
+        <a href="/" class="at-header__brand" aria-label="Align Therapy home">
+          <span class="at-header__icon" aria-hidden="true"></span>
+          <span class="at-header__wordmark">AlignTherapy</span>
+        </a>
+        <nav class="at-nav" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#faqs">FAQs</a>
+        </nav>
+        <a href="#login" class="at-btn-login">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+          Log In
+        </a>
+        <button type="button" class="at-header__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="at-header-menu" id="at-header-toggle">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div id="at-header-menu" class="at-header__dropdown" aria-label="Mobile menu" aria-hidden="true">
+        <nav class="at-nav">
+          <a href="#about">About</a>
+          <a href="#faqs">FAQs</a>
+          <a href="#login" class="at-btn-login">Log In</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="at-hero" id="at-hero" aria-labelledby="at-hero-heading">
+      <div class="at-hero__blobs" aria-hidden="true">
+        <span class="at-hero__blob at-hero__blob--1"></span>
+        <span class="at-hero__blob at-hero__blob--2"></span>
+        <span class="at-hero__blob at-hero__blob--3"></span>
+        <span class="at-hero__blob at-hero__blob--4"></span>
+      </div>
+      <div class="at-container">
+        <h1 class="at-hero__headline" id="at-hero-heading">Specialized Therapy, for you.</h1>
+        <div class="at-hero__search" role="search">
+          <div class="at-hero__search-inner">
+            <div class="at-field">
+              <label for="at-state">State</label>
+              <select id="at-state" aria-label="Select your state">
+                <option value="">Choose state</option>
+                <option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="DC">DC</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option>
+              </select>
+            </div>
+            <div class="at-field">
+              <label for="at-focus">Focus</label>
+              <select id="at-focus" aria-label="Select focus area">
+                <option value="pornography">Pornography addiction</option>
+                <option value="compulsive">Compulsive sexual behavior</option>
+                <option value="relationships">Relationship repair</option>
+                <option value="anxiety">Anxiety/Stress</option>
+              </select>
+            </div>
+            <div class="at-field">
+              <label for="at-session">Session type</label>
+              <select id="at-session" aria-label="Select session type">
+                <option value="individual">Individual</option>
+                <option value="couples">Couples</option>
+                <option value="group">Group</option>
+                <option value="coaching">Coaching</option>
+              </select>
+            </div>
+            <button type="button" id="at-search-btn" class="at-hero__search-btn" aria-label="Search providers">
+              Search
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p class="at-hero__disclaimer">Not for emergencies. If you're in immediate danger, call 911.</p>
+      </div>
+    </section>
+
+    <section class="at-about" id="about" aria-labelledby="at-about-heading">
+      <div class="at-container">
+        <h2 class="at-about__heading" id="at-about-heading">Why Align?</h2>
+        <p class="at-about__lead">
+          Struggles with pornography can feel personal and isolating. At Align Therapy, we offer evidence-based support in a private, non-judgmental setting.
+          Our licensed clinicians help you understand patterns, build coping skills, and move forward at your own pace—without shame.
+        </p>
+
+        <div class="at-about__cards">
+          <figure class="at-about__card">
+            <img src="https://cdn.prod.website-files.com/69668e9996ae4ae1b79f47c5/697bb7bda85fe645d514a61e_Screenshot%202026-01-29%20at%202.38.32%E2%80%AFPM.png" alt="Supportive therapy environment" width="400" height="240">
+            <figcaption>Licensed clinicians trained in evidence-based approaches.</figcaption>
+          </figure>
+          <figure class="at-about__card">
+            <img src="https://cdn.prod.website-files.com/69668e9996ae4ae1b79f47c5/697bb7bd196ca20a3f6c446b_Screenshot%202026-01-29%20at%202.38.42%E2%80%AFPM.png" alt="Private and confidential care" width="400" height="240">
+            <figcaption>Private, confidential sessions from wherever you are.</figcaption>
+          </figure>
+          <figure class="at-about__card">
+            <img src="https://cdn.prod.website-files.com/69668e9996ae4ae1b79f47c5/697bb7bc3992134f535bbbd2_Screenshot%202026-01-29%20at%202.38.50%E2%80%AFPM.png" alt="Personalized care plans" width="400" height="240">
+            <figcaption>Care that fits your goals and your schedule.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="at-faq" id="faqs" aria-labelledby="at-faq-heading">
+      <div class="at-container">
+        <h2 class="at-faq__heading" id="at-faq-heading">Frequently asked questions</h2>
+
+        <div class="at-faq__list">
+          <div class="at-faq__item">
+            <button type="button" class="at-faq__trigger" aria-expanded="false" aria-controls="at-faq-1" id="at-faq-t1">Who is this for?</button>
+            <div id="at-faq-1" class="at-faq__panel" role="region" aria-labelledby="at-faq-t1" hidden>
+              <p>Adults who want professional support for pornography-related concerns or compulsive behaviors. Our therapists work with individuals and, when appropriate, partners—always in a judgment-free, evidence-based way.</p>
+            </div>
+          </div>
+
+          <div class="at-faq__item">
+            <button type="button" class="at-faq__trigger" aria-expanded="false" aria-controls="at-faq-2" id="at-faq-t2">Are therapists licensed?</button>
+            <div id="at-faq-2" class="at-faq__panel" role="region" aria-labelledby="at-faq-t2" hidden>
+              <p>Yes. All clinicians are licensed in their state and trained in approaches supported by research. You can verify licensure when you choose a provider.</p>
+            </div>
+          </div>
+
+          <div class="at-faq__item">
+            <button type="button" class="at-faq__trigger" aria-expanded="false" aria-controls="at-faq-3" id="at-faq-t3">Is this religious?</button>
+            <div id="at-faq-3" class="at-faq__panel" role="region" aria-labelledby="at-faq-t3" hidden>
+              <p>Align Therapy is secular. We welcome people of any faith or none. Treatment is based on clinical evidence, not religious doctrine.</p>
+            </div>
+          </div>
+
+          <div class="at-faq__item">
+            <button type="button" class="at-faq__trigger" aria-expanded="false" aria-controls="at-faq-4" id="at-faq-t4">How does state availability work?</button>
+            <div id="at-faq-4" class="at-faq__panel" role="region" aria-labelledby="at-faq-t4" hidden>
+              <p>Therapists are licensed in specific states. Use the state selector above to see who's available where you're located.</p>
+            </div>
+          </div>
+
+          <div class="at-faq__item">
+            <button type="button" class="at-faq__trigger" aria-expanded="false" aria-controls="at-faq-5" id="at-faq-t5">Is this for emergencies?</button>
+            <div id="at-faq-5" class="at-faq__panel" role="region" aria-labelledby="at-faq-t5" hidden>
+              <p>No. If you're in crisis or immediate danger, please call 911 or a crisis line. We provide ongoing therapy, not emergency care.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="at-footer" id="at-footer" role="contentinfo">
+      <div class="at-container">
+        <div class="at-footer__top">
+          <a href="/" class="at-footer__logo">AlignTherapy</a>
+          <nav class="at-footer__nav" aria-label="Footer navigation">
+            <a href="#about">About</a>
+            <a href="#faqs">FAQs</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+          </nav>
+        </div>
+
+        <p class="at-footer__compliance">Telehealth services are provided by licensed clinicians. Not for emergencies—if you're in crisis, call 911 or a crisis line.</p>
+        <p id="at-footer-state" class="at-footer__state-line" aria-live="polite"></p>
+        <p class="at-footer__copy">© <span id="at-footer-year"></span> Align Therapy.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+  (function(){
+    var KEY='at_selected_state';
+    var state={selectedState:null};
+    var cbs=[];
+    try{state.selectedState=localStorage.getItem(KEY);}catch(e){}
+    function setState(v){
+      state.selectedState=v;
+      try{localStorage.setItem(KEY,v);}catch(e){}
+      cbs.forEach(function(f){f(v);});
+    }
+    window.AT={state:state,setState:setState,onStateChange:function(f){if(typeof f==='function')cbs.push(f);}};
+
+    function updateUI(){
+      var s=state.selectedState;
+      var el=document.getElementById('at-footer-state');
+      if(el) el.textContent = s ? 'Current state: '+s : '';
+    }
+
+    function initSearch(){
+      var sel=document.getElementById('at-state');
+      var btn=document.getElementById('at-search-btn');
+      if(!sel||!btn) return;
+      try{if(state.selectedState) sel.value=state.selectedState;}catch(e){}
+      sel.addEventListener('change',function(){setState(sel.value);});
+      btn.addEventListener('click',function(){
+        setState(sel.value);
+        var a=document.getElementById('about');
+        if(a) a.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+      updateUI();
+    }
+
+    function initHeader(){
+      var toggle=document.getElementById('at-header-toggle');
+      var menu=document.getElementById('at-header-menu');
+      if(!toggle||!menu) return;
+
+      function open(){
+        menu.setAttribute('aria-hidden','false');
+        toggle.setAttribute('aria-expanded','true');
+        var first=menu.querySelector('a');
+        if(first) first.focus();
+      }
+      function close(){
+        menu.setAttribute('aria-hidden','true');
+        toggle.setAttribute('aria-expanded','false');
+        toggle.focus();
+      }
+      toggle.addEventListener('click',function(){
+        if(menu.getAttribute('aria-hidden')==='true') open();
+        else close();
+      });
+      menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+    }
+
+    function initFaq(){
+      document.querySelectorAll('#at-site .at-faq__trigger').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var open=this.getAttribute('aria-expanded')==='true';
+          var panel=document.getElementById(this.getAttribute('aria-controls'));
+          this.setAttribute('aria-expanded',!open);
+          if(panel) panel.hidden=open;
+        });
+      });
+    }
+
+    function initScroll(){
+      document.getElementById('at-site').addEventListener('click',function(e){
+        var a=e.target.closest('a[href^="#"]'); if(!a) return;
+        var id=a.getAttribute('href').slice(1); if(!id) return;
+        var el=document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    }
+
+    function initFooter(){
+      var y=document.getElementById('at-footer-year');
+      if(y) y.textContent=new Date().getFullYear();
+      updateUI();
+    }
+
+    AT.onStateChange(updateUI);
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+    else run();
+    function run(){initHeader();initSearch();initFaq();initScroll();initFooter();}
+  })();
+  </script>
+</body>
+</html>
