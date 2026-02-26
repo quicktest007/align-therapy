@@ -40,7 +40,7 @@
       #at-site .at-header__dropdown[aria-hidden="false"]{display:block;}
       #at-site .at-header__dropdown .at-nav{display:flex;flex-direction:column;padding:1rem;align-items:stretch;}
       #at-site .at-header__dropdown .at-nav a{padding:.5rem 0;}
-      @media(max-width:767px){#at-site .at-header__dropdown{position:absolute;left:0;right:0;top:100%;width:100%;border-radius:0;border-left:none;border-right:none;}}
+      @media(max-width:767px){#at-site .at-header__dropdown{position:fixed;left:0;right:0;top:72px;width:100%;border-radius:0;border-left:none;border-right:none;z-index:99;}}
       @media(min-width:768px){#at-site .at-header__dropdown{position:absolute;right:0;top:calc(100% + .5rem);left:auto;width:200px;border-radius:12px;border:1px solid var(--at-border);border-top:none;box-shadow:0 10px 30px rgba(11,31,59,.12);}}
 
       /* Hero (gradient + dynamic background) */
