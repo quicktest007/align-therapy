@@ -100,26 +100,28 @@
       @media(max-width:639px){.at-hero__search{flex-direction:column;border-radius:var(--at-radius-lg);padding:var(--at-space-3);}.at-hero__search .at-hero__field{width:100%;}.at-hero__search .at-hero__field select{border-radius:10px;}.at-hero__search-btn{width:100%;border-radius:10px;}}
       .at-hero__disclaimer{text-align:center;font-size:.8125rem;color:rgba(255,255,255,.7);margin-top:var(--at-space-5);}
 
-      /* Custom select (replaces native dropdown UI; native select kept for a11y and form submit) */
-      .at-custom-select{position:relative;width:100%;}
-      .at-custom-select__native{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;opacity:0;pointer-events:none;}
-      .at-custom-select__trigger{display:flex;align-items:center;justify-content:space-between;width:100%;height:44px;padding:0 16px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;font-family:var(--at-font-body);font-size:.9375rem;color:#1F2937;text-align:left;cursor:pointer;transition:border-color var(--at-transition),box-shadow var(--at-transition);}
-      .at-custom-select__trigger:hover{border-color:#D1D5DB;}
-      .at-custom-select__trigger:focus{outline:none;box-shadow:0 0 0 2px var(--at-teal);}
-      .at-custom-select__trigger[aria-expanded="true"]{border-color:#E5E7EB;box-shadow:0 0 0 2px rgba(26,166,166,.25);}
-      .at-custom-select__chevron{flex-shrink:0;width:16px;height:16px;margin-left:8px;color:#6B7280;transition:transform 180ms ease;}
-      .at-custom-select__label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-      .at-custom-select__trigger[aria-expanded="true"] .at-custom-select__chevron{transform:rotate(180deg);}
-      .at-custom-select__panel{position:absolute;left:0;right:0;top:calc(100% + 6px);min-width:100%;max-height:280px;overflow-y:auto;background:#fff;border:1px solid #E5E7EB;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.08);z-index:200;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity 180ms ease,transform 180ms ease,visibility 180ms ease;}
-      .at-custom-select__panel.is-open{opacity:1;visibility:visible;transform:translateY(0);}
-      .at-custom-select__option{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px;padding:0 16px;background:transparent;border:none;font-family:var(--at-font-body);font-size:.9375rem;color:#1F2937;text-align:left;cursor:pointer;transition:background var(--at-transition);}
-      .at-custom-select__option:hover{background:#F3F4F6;}
-      .at-custom-select__option:active{background:#E5E7EB;}
-      .at-custom-select__option[aria-selected="true"]{font-weight:600;color:#111827;}
-      .at-custom-select__option[aria-selected="true"] .at-custom-select__check{opacity:1;}
-      .at-custom-select__option:focus{outline:none;background:#F3F4F6;}
-      .at-custom-select__check{flex-shrink:0;width:18px;height:18px;margin-left:8px;opacity:0;color:var(--at-teal);}
-      @media(prefers-reduced-motion:reduce){.at-custom-select__chevron,.at-custom-select__panel{transition:none;}}
+      /* Custom select: desktop-only custom dropdown; native select kept in DOM, visually hidden */
+      .cs-wrap{position:relative;width:100%;}
+      /* Visually hidden native select - stays in DOM for form submit; never use display:none */
+      .cs-native{position:absolute;left:-9999px;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip:rect(0,0,0,0);border:0;opacity:0;pointer-events:none;}
+      .cs-trigger{display:flex;align-items:center;justify-content:space-between;width:100%;height:44px;padding:0 16px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;font-family:var(--at-font-body);font-size:.9375rem;color:#1F2937;text-align:left;cursor:pointer;transition:border-color var(--at-transition),box-shadow var(--at-transition);}
+      .cs-trigger:hover{border-color:#D1D5DB;}
+      .cs-trigger:focus{outline:none;box-shadow:0 0 0 2px var(--at-teal);}
+      .cs-trigger[aria-expanded="true"]{border-color:#E5E7EB;box-shadow:0 0 0 2px rgba(26,166,166,.25);}
+      .cs-trigger .cs-chevron{flex-shrink:0;width:16px;height:16px;margin-left:8px;color:#6B7280;transition:transform 180ms ease;}
+      .cs-trigger .cs-label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+      .cs-trigger[aria-expanded="true"] .cs-chevron{transform:rotate(180deg);}
+      /* Panel: rendered in body portal so it is never clipped by hero overflow */
+      .cs-panel{position:fixed;min-width:200px;max-height:280px;overflow-y:auto;background:#fff;border:1px solid #E5E7EB;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.12);z-index:9999;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity 200ms ease,transform 200ms ease,visibility 200ms ease;}
+      .cs-panel.is-open{opacity:1;visibility:visible;transform:translateY(0);}
+      .cs-option{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px;padding:0 16px;background:transparent;border:none;font-family:var(--at-font-body);font-size:.9375rem;color:#1F2937;text-align:left;cursor:pointer;transition:background var(--at-transition);box-sizing:border-box;}
+      .cs-option:hover,.cs-option--active{background:#F3F4F6;}
+      .cs-option:active{background:#E5E7EB;}
+      .cs-option--selected{font-weight:600;color:#111827;}
+      .cs-option--selected .cs-check{opacity:1;}
+      .cs-option:focus{outline:none;background:#F3F4F6;}
+      .cs-check{flex-shrink:0;width:18px;height:18px;margin-left:8px;opacity:0;color:var(--at-teal);}
+      @media(prefers-reduced-motion:reduce){.cs-trigger .cs-chevron,.cs-panel{transition:none;}}
 
       /* Trust pills */
       .at-trust{background:var(--at-surface);padding:var(--at-space-6) 0;border-bottom:1px solid var(--at-border);}
@@ -489,35 +491,33 @@
 
   <script>
   /**
-   * Custom select component: replaces native <select> UI with a styled dropdown
-   * while keeping the native select in DOM for form submission and screen readers.
-   * Any <select data-custom-select> is auto-converted on DOMContentLoaded.
+   * Custom select: fully custom dropdown panel (no native OS menu).
+   * - Desktop (pointer: fine, width >= 768px): custom trigger + panel in body portal.
+   * - Mobile: skip enhancement; native <select> remains.
+   * Native <select> stays in DOM (visually hidden on desktop) for form submission.
    */
   (function(){
-    var panelGap = 6;
-    var typeAheadReset = 500;
+    var PANEL_GAP = 8;
+    var TYPEAHEAD_RESET = 500;
+    var DESKTOP_MEDIA = '(min-width: 768px) and (pointer: fine)';
 
     function CustomSelect(nativeSelect) {
       this.select = nativeSelect;
-      this.id = nativeSelect.id || 'at-custom-select-' + Math.random().toString(36).slice(2, 9);
-      this.listboxId = this.id + '-listbox';
+      this.uid = nativeSelect.id || 'cs-' + Math.random().toString(36).slice(2, 11);
+      this.listboxId = this.uid + '-listbox';
       this.open = false;
       this.focusedIndex = -1;
       this.typeAheadBuffer = '';
       this.typeAheadTimer = null;
-      this.boundClose = this.close.bind(this);
+      this.wrapper = null;
     }
 
     CustomSelect.prototype.getOptions = function() {
       return Array.prototype.slice.call(this.select.querySelectorAll('option'));
     };
 
-    CustomSelect.prototype.getSelectedOption = function() {
-      return this.select.options[this.select.selectedIndex] || null;
-    };
-
     CustomSelect.prototype.getSelectedText = function() {
-      var opt = this.getSelectedOption();
+      var opt = this.select.options[this.select.selectedIndex];
       return opt ? opt.textContent.trim() : (this.select.querySelector('option') ? 'Select…' : '');
     };
 
@@ -525,50 +525,52 @@
       var self = this;
       var options = this.getOptions();
       var wrapper = document.createElement('div');
-      wrapper.className = 'at-custom-select';
+      wrapper.className = 'cs-wrap';
 
-      // Visually hide native select; keep in DOM for form submit and a11y fallback.
-      // Screen readers will use our combobox/listbox via ARIA.
-      this.select.classList.add('at-custom-select__native');
+      // Native select: visually hidden, kept for form submit; never display:none
+      this.select.classList.add('cs-native');
       this.select.setAttribute('tabindex', '-1');
       this.select.setAttribute('aria-hidden', 'true');
 
       var trigger = document.createElement('button');
       trigger.type = 'button';
-      trigger.className = 'at-custom-select__trigger';
+      trigger.className = 'cs-trigger';
+      trigger.setAttribute('role', 'combobox');
       trigger.setAttribute('aria-haspopup', 'listbox');
       trigger.setAttribute('aria-expanded', 'false');
       trigger.setAttribute('aria-controls', this.listboxId);
       trigger.setAttribute('aria-label', this.select.getAttribute('aria-label') || this.select.title || 'Choose option');
-      trigger.setAttribute('id', this.id);
+      trigger.setAttribute('id', this.uid);
       var labelSpan = document.createElement('span');
-      labelSpan.className = 'at-custom-select__label';
+      labelSpan.className = 'cs-label';
       labelSpan.textContent = this.getSelectedText();
       trigger.appendChild(labelSpan);
       var chevron = document.createElement('span');
-      chevron.className = 'at-custom-select__chevron';
+      chevron.className = 'cs-chevron';
       chevron.setAttribute('aria-hidden', 'true');
       chevron.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
       trigger.appendChild(chevron);
 
       var panel = document.createElement('div');
-      panel.className = 'at-custom-select__panel';
+      panel.className = 'cs-panel';
       panel.setAttribute('role', 'listbox');
       panel.setAttribute('id', this.listboxId);
-      panel.setAttribute('aria-labelledby', this.id);
+      panel.setAttribute('aria-labelledby', this.uid);
       panel.setAttribute('tabindex', '-1');
 
       options.forEach(function(opt, i) {
+        var optionId = self.uid + '-opt-' + i;
         var optionEl = document.createElement('button');
         optionEl.type = 'button';
-        optionEl.className = 'at-custom-select__option';
+        optionEl.className = 'cs-option' + (opt.selected ? ' cs-option--selected' : '');
         optionEl.setAttribute('role', 'option');
+        optionEl.setAttribute('id', optionId);
         optionEl.setAttribute('aria-selected', opt.selected ? 'true' : 'false');
         optionEl.setAttribute('data-value', opt.value);
         optionEl.setAttribute('data-index', String(i));
         optionEl.textContent = opt.textContent.trim();
         var check = document.createElement('span');
-        check.className = 'at-custom-select__check';
+        check.className = 'cs-check';
         check.setAttribute('aria-hidden', 'true');
         check.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>';
         optionEl.appendChild(check);
@@ -582,12 +584,14 @@
       this.select.parentNode.removeChild(this.select);
       wrapper.appendChild(this.select);
 
+      this.wrapper = wrapper;
       this.trigger = trigger;
       this.panel = panel;
       this.optionEls = panel.querySelectorAll('[role="option"]');
 
       trigger.addEventListener('click', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         self.toggle();
       });
       trigger.addEventListener('keydown', function(e) {
@@ -596,26 +600,53 @@
       panel.addEventListener('keydown', function(e) {
         self.onPanelKeydown(e);
       });
-      this.optionEls.forEach(function(el, i) {
-        el.addEventListener('click', function(e) {
-          e.preventDefault();
-          self.choose(i);
-        });
-        el.addEventListener('mousedown', function(e) {
-          e.preventDefault();
-        });
-      });
+      for (var i = 0; i < this.optionEls.length; i++) {
+        (function(idx) {
+          var el = self.optionEls[idx];
+          el.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            self.choose(idx);
+          });
+          el.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+          });
+        })(i);
+      }
       document.addEventListener('click', function(e) {
-        if (self.open && !wrapper.contains(e.target)) self.close();
+        if (self.open && !wrapper.contains(e.target) && !panel.contains(e.target)) self.close();
+      });
+      this.select.addEventListener('change', function() {
+        self.updateTriggerText();
+        self.updateOptionSelectedState();
       });
 
       this.updateTriggerText();
+      this.updateOptionSelectedState();
       return this;
-    }
+    };
 
     CustomSelect.prototype.updateTriggerText = function() {
-      var label = this.trigger && this.trigger.querySelector('.at-custom-select__label');
+      var label = this.trigger && this.trigger.querySelector('.cs-label');
       if (label) label.textContent = this.getSelectedText();
+    };
+
+    CustomSelect.prototype.updateOptionSelectedState = function() {
+      var idx = this.select.selectedIndex;
+      for (var i = 0; i < this.optionEls.length; i++) {
+        var el = this.optionEls[i];
+        var selected = i === idx;
+        el.setAttribute('aria-selected', selected ? 'true' : 'false');
+        el.classList.toggle('cs-option--selected', selected);
+      }
+    };
+
+    CustomSelect.prototype.setActiveOption = function(index) {
+      this.focusedIndex = index;
+      this.trigger.setAttribute('aria-activedescendant', this.optionEls[index] ? this.optionEls[index].id : '');
+      for (var i = 0; i < this.optionEls.length; i++) {
+        this.optionEls[i].classList.toggle('cs-option--active', i === index);
+      }
     };
 
     CustomSelect.prototype.toggle = function() {
@@ -623,21 +654,40 @@
     };
 
     CustomSelect.prototype.openPanel = function() {
+      var self = this;
       this.open = true;
       this.trigger.setAttribute('aria-expanded', 'true');
-      this.panel.classList.add('is-open');
       this.focusedIndex = this.select.selectedIndex >= 0 ? this.select.selectedIndex : 0;
-      this.updateOptionFocus();
-      if (this.optionEls[this.focusedIndex]) this.optionEls[this.focusedIndex].focus();
+      this.setActiveOption(this.focusedIndex);
+
+      // Render panel in body so it is never clipped by hero overflow
+      document.body.appendChild(this.panel);
+      var rect = this.trigger.getBoundingClientRect();
+      this.panel.style.left = rect.left + 'px';
+      this.panel.style.top = (rect.bottom + PANEL_GAP) + 'px';
+      this.panel.style.width = Math.max(rect.width, 200) + 'px';
+      this.panel.classList.add('is-open');
+
+      if (this.optionEls[this.focusedIndex]) {
+        this.optionEls[this.focusedIndex].focus();
+      }
     };
 
     CustomSelect.prototype.close = function() {
       if (!this.open) return;
       this.open = false;
       this.trigger.setAttribute('aria-expanded', 'false');
+      this.trigger.removeAttribute('aria-activedescendant');
       this.panel.classList.remove('is-open');
+      if (this.panel.parentNode === document.body) {
+        document.body.removeChild(this.panel);
+      }
+      this.wrapper.appendChild(this.panel);
       this.trigger.focus();
       this.typeAheadBuffer = '';
+      for (var i = 0; i < this.optionEls.length; i++) {
+        this.optionEls[i].classList.remove('cs-option--active');
+      }
     };
 
     CustomSelect.prototype.choose = function(index) {
@@ -646,20 +696,9 @@
       this.select.selectedIndex = index;
       this.select.value = opt.value;
       this.updateTriggerText();
-      this.optionEls.forEach(function(el, i) {
-        el.setAttribute('aria-selected', i === index ? 'true' : 'false');
-      });
+      this.updateOptionSelectedState();
       this.close();
       this.select.dispatchEvent(new Event('change', { bubbles: true }));
-    };
-
-    CustomSelect.prototype.updateOptionFocus = function() {
-      var len = this.optionEls.length;
-      if (len === 0) return;
-      this.focusedIndex = Math.max(0, Math.min(this.focusedIndex, len - 1));
-      this.optionEls.forEach(function(el, i) {
-        el.setAttribute('aria-selected', i === this.select.selectedIndex ? 'true' : 'false');
-      }.bind(this));
     };
 
     CustomSelect.prototype.onTriggerKeydown = function(e) {
@@ -672,7 +711,7 @@
           this.openPanel();
           if (e.key === 'ArrowDown') this.focusedIndex = Math.min(this.focusedIndex + 1, this.optionEls.length - 1);
           if (e.key === 'ArrowUp') this.focusedIndex = Math.max(this.focusedIndex - 1, 0);
-          this.updateOptionFocus();
+          this.setActiveOption(this.focusedIndex);
           if (this.optionEls[this.focusedIndex]) this.optionEls[this.focusedIndex].focus();
           break;
         case 'Escape':
@@ -692,11 +731,13 @@
         case 'ArrowDown':
           e.preventDefault();
           this.focusedIndex = Math.min(this.focusedIndex + 1, this.optionEls.length - 1);
+          this.setActiveOption(this.focusedIndex);
           this.optionEls[this.focusedIndex].focus();
           break;
         case 'ArrowUp':
           e.preventDefault();
           this.focusedIndex = Math.max(this.focusedIndex - 1, 0);
+          this.setActiveOption(this.focusedIndex);
           this.optionEls[this.focusedIndex].focus();
           break;
         case 'Enter':
@@ -722,20 +763,21 @@
       clearTimeout(this.typeAheadTimer);
       this.typeAheadTimer = setTimeout(function() {
         self.typeAheadBuffer = '';
-      }, typeAheadReset);
+      }, TYPEAHEAD_RESET);
       var options = this.getOptions();
       for (var i = 0; i < options.length; i++) {
         if (options[i].textContent.trim().toLowerCase().indexOf(this.typeAheadBuffer) === 0) {
           if (!this.open) this.openPanel();
           this.focusedIndex = i;
-          this.optionEls[i].focus();
-          this.updateOptionFocus();
+          this.setActiveOption(i);
+          if (this.optionEls[i]) this.optionEls[i].focus();
           break;
         }
       }
     };
 
     function initCustomSelects() {
+      if (!window.matchMedia(DESKTOP_MEDIA).matches) return;
       var root = document.getElementById('at-site');
       if (!root) return;
       root.querySelectorAll('select[data-custom-select]').forEach(function(sel) {
