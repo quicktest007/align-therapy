@@ -100,6 +100,27 @@
       @media(max-width:639px){.at-hero__search{flex-direction:column;border-radius:var(--at-radius-lg);padding:var(--at-space-3);}.at-hero__search .at-hero__field{width:100%;}.at-hero__search .at-hero__field select{border-radius:10px;}.at-hero__search-btn{width:100%;border-radius:10px;}}
       .at-hero__disclaimer{text-align:center;font-size:.8125rem;color:rgba(255,255,255,.7);margin-top:var(--at-space-5);}
 
+      /* Custom select (replaces native dropdown UI; native select kept for a11y and form submit) */
+      .at-custom-select{position:relative;width:100%;}
+      .at-custom-select__native{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;opacity:0;pointer-events:none;}
+      .at-custom-select__trigger{display:flex;align-items:center;justify-content:space-between;width:100%;height:44px;padding:0 16px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;font-family:var(--at-font-body);font-size:.9375rem;color:#1F2937;text-align:left;cursor:pointer;transition:border-color var(--at-transition),box-shadow var(--at-transition);}
+      .at-custom-select__trigger:hover{border-color:#D1D5DB;}
+      .at-custom-select__trigger:focus{outline:none;box-shadow:0 0 0 2px var(--at-teal);}
+      .at-custom-select__trigger[aria-expanded="true"]{border-color:#E5E7EB;box-shadow:0 0 0 2px rgba(26,166,166,.25);}
+      .at-custom-select__chevron{flex-shrink:0;width:16px;height:16px;margin-left:8px;color:#6B7280;transition:transform 180ms ease;}
+      .at-custom-select__label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+      .at-custom-select__trigger[aria-expanded="true"] .at-custom-select__chevron{transform:rotate(180deg);}
+      .at-custom-select__panel{position:absolute;left:0;right:0;top:calc(100% + 6px);min-width:100%;max-height:280px;overflow-y:auto;background:#fff;border:1px solid #E5E7EB;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.08);z-index:200;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity 180ms ease,transform 180ms ease,visibility 180ms ease;}
+      .at-custom-select__panel.is-open{opacity:1;visibility:visible;transform:translateY(0);}
+      .at-custom-select__option{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px;padding:0 16px;background:transparent;border:none;font-family:var(--at-font-body);font-size:.9375rem;color:#1F2937;text-align:left;cursor:pointer;transition:background var(--at-transition);}
+      .at-custom-select__option:hover{background:#F3F4F6;}
+      .at-custom-select__option:active{background:#E5E7EB;}
+      .at-custom-select__option[aria-selected="true"]{font-weight:600;color:#111827;}
+      .at-custom-select__option[aria-selected="true"] .at-custom-select__check{opacity:1;}
+      .at-custom-select__option:focus{outline:none;background:#F3F4F6;}
+      .at-custom-select__check{flex-shrink:0;width:18px;height:18px;margin-left:8px;opacity:0;color:var(--at-teal);}
+      @media(prefers-reduced-motion:reduce){.at-custom-select__chevron,.at-custom-select__panel{transition:none;}}
+
       /* Trust pills */
       .at-trust{background:var(--at-surface);padding:var(--at-space-6) 0;border-bottom:1px solid var(--at-border);}
       .at-trust__list{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--at-space-3);list-style:none;margin:0;padding:0;}
@@ -212,13 +233,13 @@
             </p>
             <div class="at-hero__search" role="search">
               <div class="at-hero__field">
-                <select id="at-state" aria-label="Select your state">
+                <select id="at-state" data-custom-select aria-label="Select your state">
                   <option value="">State</option>
                   <option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="DC">DC</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option>
                 </select>
               </div>
               <div class="at-hero__field">
-                <select id="at-focus" aria-label="Select focus area">
+                <select id="at-focus" data-custom-select aria-label="Select focus area">
                   <option value="pornography">Pornography addiction</option>
                   <option value="compulsive">Compulsive sexual behavior</option>
                   <option value="relationships">Relationship repair</option>
@@ -226,7 +247,7 @@
                 </select>
               </div>
               <div class="at-hero__field">
-                <select id="at-session" aria-label="Select session type">
+                <select id="at-session" data-custom-select aria-label="Select session type">
                   <option value="individual">Individual</option>
                   <option value="couples">Couples</option>
                   <option value="group">Group</option>
@@ -463,6 +484,270 @@
     if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
     else run();
     function run(){initHeader();initSearch();initFaq();initScroll();initFooter();}
+  })();
+  </script>
+
+  <script>
+  /**
+   * Custom select component: replaces native <select> UI with a styled dropdown
+   * while keeping the native select in DOM for form submission and screen readers.
+   * Any <select data-custom-select> is auto-converted on DOMContentLoaded.
+   */
+  (function(){
+    var panelGap = 6;
+    var typeAheadReset = 500;
+
+    function CustomSelect(nativeSelect) {
+      this.select = nativeSelect;
+      this.id = nativeSelect.id || 'at-custom-select-' + Math.random().toString(36).slice(2, 9);
+      this.listboxId = this.id + '-listbox';
+      this.open = false;
+      this.focusedIndex = -1;
+      this.typeAheadBuffer = '';
+      this.typeAheadTimer = null;
+      this.boundClose = this.close.bind(this);
+    }
+
+    CustomSelect.prototype.getOptions = function() {
+      return Array.prototype.slice.call(this.select.querySelectorAll('option'));
+    };
+
+    CustomSelect.prototype.getSelectedOption = function() {
+      return this.select.options[this.select.selectedIndex] || null;
+    };
+
+    CustomSelect.prototype.getSelectedText = function() {
+      var opt = this.getSelectedOption();
+      return opt ? opt.textContent.trim() : (this.select.querySelector('option') ? 'Select…' : '');
+    };
+
+    CustomSelect.prototype.render = function() {
+      var self = this;
+      var options = this.getOptions();
+      var wrapper = document.createElement('div');
+      wrapper.className = 'at-custom-select';
+
+      // Visually hide native select; keep in DOM for form submit and a11y fallback.
+      // Screen readers will use our combobox/listbox via ARIA.
+      this.select.classList.add('at-custom-select__native');
+      this.select.setAttribute('tabindex', '-1');
+      this.select.setAttribute('aria-hidden', 'true');
+
+      var trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'at-custom-select__trigger';
+      trigger.setAttribute('aria-haspopup', 'listbox');
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.setAttribute('aria-controls', this.listboxId);
+      trigger.setAttribute('aria-label', this.select.getAttribute('aria-label') || this.select.title || 'Choose option');
+      trigger.setAttribute('id', this.id);
+      var labelSpan = document.createElement('span');
+      labelSpan.className = 'at-custom-select__label';
+      labelSpan.textContent = this.getSelectedText();
+      trigger.appendChild(labelSpan);
+      var chevron = document.createElement('span');
+      chevron.className = 'at-custom-select__chevron';
+      chevron.setAttribute('aria-hidden', 'true');
+      chevron.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
+      trigger.appendChild(chevron);
+
+      var panel = document.createElement('div');
+      panel.className = 'at-custom-select__panel';
+      panel.setAttribute('role', 'listbox');
+      panel.setAttribute('id', this.listboxId);
+      panel.setAttribute('aria-labelledby', this.id);
+      panel.setAttribute('tabindex', '-1');
+
+      options.forEach(function(opt, i) {
+        var optionEl = document.createElement('button');
+        optionEl.type = 'button';
+        optionEl.className = 'at-custom-select__option';
+        optionEl.setAttribute('role', 'option');
+        optionEl.setAttribute('aria-selected', opt.selected ? 'true' : 'false');
+        optionEl.setAttribute('data-value', opt.value);
+        optionEl.setAttribute('data-index', String(i));
+        optionEl.textContent = opt.textContent.trim();
+        var check = document.createElement('span');
+        check.className = 'at-custom-select__check';
+        check.setAttribute('aria-hidden', 'true');
+        check.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>';
+        optionEl.appendChild(check);
+        panel.appendChild(optionEl);
+      });
+
+      wrapper.appendChild(this.select);
+      wrapper.appendChild(trigger);
+      wrapper.appendChild(panel);
+      this.select.parentNode.insertBefore(wrapper, this.select);
+      this.select.parentNode.removeChild(this.select);
+      wrapper.appendChild(this.select);
+
+      this.trigger = trigger;
+      this.panel = panel;
+      this.optionEls = panel.querySelectorAll('[role="option"]');
+
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        self.toggle();
+      });
+      trigger.addEventListener('keydown', function(e) {
+        self.onTriggerKeydown(e);
+      });
+      panel.addEventListener('keydown', function(e) {
+        self.onPanelKeydown(e);
+      });
+      this.optionEls.forEach(function(el, i) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          self.choose(i);
+        });
+        el.addEventListener('mousedown', function(e) {
+          e.preventDefault();
+        });
+      });
+      document.addEventListener('click', function(e) {
+        if (self.open && !wrapper.contains(e.target)) self.close();
+      });
+
+      this.updateTriggerText();
+      return this;
+    }
+
+    CustomSelect.prototype.updateTriggerText = function() {
+      var label = this.trigger && this.trigger.querySelector('.at-custom-select__label');
+      if (label) label.textContent = this.getSelectedText();
+    };
+
+    CustomSelect.prototype.toggle = function() {
+      this.open ? this.close() : this.openPanel();
+    };
+
+    CustomSelect.prototype.openPanel = function() {
+      this.open = true;
+      this.trigger.setAttribute('aria-expanded', 'true');
+      this.panel.classList.add('is-open');
+      this.focusedIndex = this.select.selectedIndex >= 0 ? this.select.selectedIndex : 0;
+      this.updateOptionFocus();
+      if (this.optionEls[this.focusedIndex]) this.optionEls[this.focusedIndex].focus();
+    };
+
+    CustomSelect.prototype.close = function() {
+      if (!this.open) return;
+      this.open = false;
+      this.trigger.setAttribute('aria-expanded', 'false');
+      this.panel.classList.remove('is-open');
+      this.trigger.focus();
+      this.typeAheadBuffer = '';
+    };
+
+    CustomSelect.prototype.choose = function(index) {
+      var opt = this.getOptions()[index];
+      if (!opt) return;
+      this.select.selectedIndex = index;
+      this.select.value = opt.value;
+      this.updateTriggerText();
+      this.optionEls.forEach(function(el, i) {
+        el.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      });
+      this.close();
+      this.select.dispatchEvent(new Event('change', { bubbles: true }));
+    };
+
+    CustomSelect.prototype.updateOptionFocus = function() {
+      var len = this.optionEls.length;
+      if (len === 0) return;
+      this.focusedIndex = Math.max(0, Math.min(this.focusedIndex, len - 1));
+      this.optionEls.forEach(function(el, i) {
+        el.setAttribute('aria-selected', i === this.select.selectedIndex ? 'true' : 'false');
+      }.bind(this));
+    };
+
+    CustomSelect.prototype.onTriggerKeydown = function(e) {
+      switch (e.key) {
+        case 'ArrowDown':
+        case 'ArrowUp':
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          this.openPanel();
+          if (e.key === 'ArrowDown') this.focusedIndex = Math.min(this.focusedIndex + 1, this.optionEls.length - 1);
+          if (e.key === 'ArrowUp') this.focusedIndex = Math.max(this.focusedIndex - 1, 0);
+          this.updateOptionFocus();
+          if (this.optionEls[this.focusedIndex]) this.optionEls[this.focusedIndex].focus();
+          break;
+        case 'Escape':
+          e.preventDefault();
+          this.close();
+          break;
+        default:
+          if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            this.typeAhead(e.key);
+            e.preventDefault();
+          }
+      }
+    };
+
+    CustomSelect.prototype.onPanelKeydown = function(e) {
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          this.focusedIndex = Math.min(this.focusedIndex + 1, this.optionEls.length - 1);
+          this.optionEls[this.focusedIndex].focus();
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          this.focusedIndex = Math.max(this.focusedIndex - 1, 0);
+          this.optionEls[this.focusedIndex].focus();
+          break;
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          this.choose(this.focusedIndex);
+          break;
+        case 'Escape':
+          e.preventDefault();
+          this.close();
+          break;
+        default:
+          if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            this.typeAhead(e.key);
+            e.preventDefault();
+          }
+      }
+    };
+
+    CustomSelect.prototype.typeAhead = function(char) {
+      var self = this;
+      this.typeAheadBuffer += char.toLowerCase();
+      clearTimeout(this.typeAheadTimer);
+      this.typeAheadTimer = setTimeout(function() {
+        self.typeAheadBuffer = '';
+      }, typeAheadReset);
+      var options = this.getOptions();
+      for (var i = 0; i < options.length; i++) {
+        if (options[i].textContent.trim().toLowerCase().indexOf(this.typeAheadBuffer) === 0) {
+          if (!this.open) this.openPanel();
+          this.focusedIndex = i;
+          this.optionEls[i].focus();
+          this.updateOptionFocus();
+          break;
+        }
+      }
+    };
+
+    function initCustomSelects() {
+      var root = document.getElementById('at-site');
+      if (!root) return;
+      root.querySelectorAll('select[data-custom-select]').forEach(function(sel) {
+        new CustomSelect(sel).render();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCustomSelects);
+    } else {
+      initCustomSelects();
+    }
   })();
   </script>
 </body>
