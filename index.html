@@ -599,12 +599,12 @@
         panel.appendChild(optionEl);
       });
 
+      var origParent = this.select.parentNode;
+      var origNext = this.select.nextSibling;
       wrapper.appendChild(this.select);
       wrapper.appendChild(trigger);
       wrapper.appendChild(panel);
-      this.select.parentNode.insertBefore(wrapper, this.select);
-      this.select.parentNode.removeChild(this.select);
-      wrapper.appendChild(this.select);
+      origParent.insertBefore(wrapper, origNext);
 
       this.wrapper = wrapper;
       this.trigger = trigger;
