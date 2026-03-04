@@ -105,6 +105,9 @@
       .heroMeta{position:relative;z-index:1;font-size:.9375rem;color:rgba(255,255,255,.8);text-align:center;margin:0 0 var(--at-space-5);}
       .logoRow{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:var(--at-space-5);}
       .logoRow__item{font-size:.8125rem;font-weight:500;color:rgba(255,255,255,.7);}
+      .heroMedia{position:relative;z-index:1;margin-top:var(--at-space-6);text-align:center;}
+      .heroMedia__img{max-width:100%;height:auto;max-height:200px;width:auto;opacity:.95;}
+      @media(min-width:768px){.heroMedia__img{max-height:240px;}}
       @media(max-width:900px){.heroCard{padding:72px 32px 64px;border-radius:28px;}.searchPill{flex-wrap:wrap;}.pillSelect{min-width:160px;}}
       @media(max-width:640px){.heroCard{padding:56px 24px 56px;border-radius:24px;}.heroHeading{font-size:clamp(1.5rem,5vw,2rem);}.searchPill{flex-direction:column;align-items:stretch;padding:14px;}.pillSelect{min-width:0;width:100%;}.pillSelect select,.pillSelect .cs-trigger{height:48px;width:100%;}.pillCta{width:100%;height:52px;}.heroMeta{font-size:.875rem;}.logoRow{gap:var(--at-space-3);}}
 
@@ -147,8 +150,9 @@
       .at-steps{display:grid;gap:var(--at-space-6);margin-top:var(--at-space-6);}
       @media(min-width:768px){.at-steps{grid-template-columns:repeat(3,1fr);}}
       .at-step{text-align:center;padding:var(--at-space-5);}
-      .at-step__icon{width:64px;height:64px;margin:0 auto var(--at-space-4);background:rgba(26,166,166,.1);border-radius:var(--at-radius-lg);display:flex;align-items:center;justify-content:center;}
+      .at-step__icon{width:100px;height:100px;margin:0 auto var(--at-space-4);background:rgba(26,166,166,.08);border-radius:var(--at-radius-lg);display:flex;align-items:center;justify-content:center;}
       .at-step__icon svg{width:28px;height:28px;color:var(--at-teal);}
+      .at-step__img{width:64px;height:64px;object-fit:contain;color:var(--at-teal);}
       .at-step__title{font-family:var(--at-font-heading);font-weight:600;font-size:1.125rem;margin:0 0 var(--at-space-2);color:var(--at-navy);}
       .at-step__copy{font-size:.9375rem;color:var(--at-text-muted);margin:0;line-height:1.6;}
 
@@ -157,6 +161,8 @@
       @media(min-width:640px){.at-help__grid{grid-template-columns:repeat(2,1fr);}}
       @media(min-width:968px){.at-help__grid{grid-template-columns:repeat(3,1fr);}}
       .at-help__card{padding:var(--at-space-5);}
+      .at-help__banner{margin-bottom:var(--at-space-6);border-radius:var(--at-radius-lg);overflow:hidden;}
+      .at-help__banner-img{width:100%;height:auto;display:block;}
       .at-help__card h3{font-family:var(--at-font-heading);font-weight:600;font-size:1rem;margin:0 0 var(--at-space-2);color:var(--at-navy);}
       .at-help__card p{font-size:.9375rem;color:var(--at-text-muted);margin:0;line-height:1.6;}
 
@@ -164,6 +170,7 @@
       .at-testimonials__grid{display:grid;gap:var(--at-space-5);margin-top:var(--at-space-6);}
       @media(min-width:768px){.at-testimonials__grid{grid-template-columns:repeat(3,1fr);}}
       .at-testimonial{padding:var(--at-space-5);}
+      .at-testimonial__avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;margin:0 auto var(--at-space-4);display:block;}
       .at-testimonial__quote{font-size:1rem;color:var(--at-text);line-height:1.65;margin:0 0 var(--at-space-4);font-style:italic;}
       .at-testimonial__quote::before{content:'"';}
       .at-testimonial__quote::after{content:'"';}
@@ -274,6 +281,9 @@
               <span class="logoRow__item">Private & secure</span>
               <span class="logoRow__item">Evidence-based</span>
             </div>
+            <div class="heroMedia">
+              <img src="images/hero-illustration.svg" alt="" width="400" height="280" class="heroMedia__img" />
+            </div>
           </div>
         </section>
       </div>
@@ -296,17 +306,17 @@
           <p class="at-section__lead">Get started in three simple steps. We make it easy to find the right fit.</p>
           <div class="at-steps">
             <div class="at-step">
-              <div class="at-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+              <div class="at-step__icon"><img src="images/step-connect.svg" alt="" width="120" height="120" class="at-step__img" /></div>
               <h3 class="at-step__title">1. Book a consult</h3>
               <p class="at-step__copy">Schedule a free 15-minute call. We'll learn about your goals and match you with a licensed therapist who specializes in your needs.</p>
             </div>
             <div class="at-step">
-              <div class="at-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div>
+              <div class="at-step__icon"><img src="images/step-video.svg" alt="" width="120" height="120" class="at-step__img" /></div>
               <h3 class="at-step__title">2. Meet your therapist</h3>
               <p class="at-step__copy">Connect via secure video. Your first session is a chance to build rapport and create a personalized plan together.</p>
             </div>
             <div class="at-step">
-              <div class="at-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+              <div class="at-step__icon"><img src="images/step-growth.svg" alt="" width="120" height="120" class="at-step__img" /></div>
               <h3 class="at-step__title">3. Build lasting change</h3>
               <p class="at-step__copy">Work at your own pace with evidence-based techniques. Track progress and adjust as you grow.</p>
             </div>
@@ -318,6 +328,9 @@
         <div class="at-container">
           <h2 class="at-section__heading" id="at-help-heading">Who we help</h2>
           <p class="at-section__lead">Our therapists support adults facing a range of concerns—always with compassion and without shame.</p>
+          <div class="at-help__banner">
+            <img src="images/who-we-help.svg" alt="" width="600" height="200" class="at-help__banner-img" />
+          </div>
           <div class="at-help__grid">
             <article class="at-card at-help__card">
               <h3>Problematic porn use</h3>
@@ -353,14 +366,17 @@
           <p class="at-section__lead">Real stories from people who've found support through Align Therapy.</p>
           <div class="at-testimonials__grid">
             <blockquote class="at-card at-testimonial">
+              <img src="images/avatar-placeholder.svg" alt="" width="80" height="80" class="at-testimonial__avatar" />
               <p class="at-testimonial__quote">I was skeptical at first, but my therapist really understood what I was going through. No judgment, just practical help. I finally feel like I'm making progress.</p>
               <footer class="at-testimonial__attr">— Anonymous, 34</footer>
             </blockquote>
             <blockquote class="at-card at-testimonial">
+              <img src="images/avatar-placeholder.svg" alt="" width="80" height="80" class="at-testimonial__avatar" />
               <p class="at-testimonial__quote">The telehealth setup made it easy to fit into my schedule. I appreciated the privacy—being able to do sessions from home removed a big barrier for me.</p>
               <footer class="at-testimonial__attr">— Anonymous, 29</footer>
             </blockquote>
             <blockquote class="at-card at-testimonial">
+              <img src="images/avatar-placeholder.svg" alt="" width="80" height="80" class="at-testimonial__avatar" />
               <p class="at-testimonial__quote">Finally found someone who doesn't moralize or shame. The focus on evidence-based approaches and understanding my patterns has been game-changing.</p>
               <footer class="at-testimonial__attr">— Anonymous, 41</footer>
             </blockquote>
